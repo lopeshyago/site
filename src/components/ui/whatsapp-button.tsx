@@ -15,12 +15,12 @@ export function WhatsAppButton({ phoneNumber, message = "Hi! I would like to get
   return (
     <Button
       onClick={handleClick}
-      className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-green-500 px-8 py-8 text-white hover:bg-green-600 focus:ring-2 focus:ring-green-400 focus:ring-offset-2"
+      className="fixed bottom-8 right-8 z-50 flex items-center gap-2 rounded-full bg-[#25D366] p-6 text-white hover:bg-[#20BD5B] hover:scale-110 shadow-xl hover:shadow-2xl transform transition-all duration-300 animate-bounce-slow focus:ring-2 focus:ring-green-400 focus:ring-offset-2"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="32"
-        height="32"
+        width="128"
+        height="128"
         viewBox="0 0 24 24"
         fill="currentColor"
       >

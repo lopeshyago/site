@@ -6,9 +6,9 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
-              Landing Page Pro
-            </h3>
+            <div className="mb-4">
+              <img src="/logo.png" alt="Landing Page Pro" className="h-8" />
+            </div>
             <p className="text-background/70 text-sm">
               Professional landing pages that convert. Fast, affordable, and results-driven.
             </p>
