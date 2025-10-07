@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { useTranslation } from "@/i18n/i18n";
 import heroImage from "@/assets/hero-image.jpg";
 
 const Hero = () => {
   const scrollToPricing = () => {
     document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
   };
+  const { t } = useTranslation();
 
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background to-muted">
@@ -17,20 +19,17 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-fade-in">
             <div className="inline-block px-4 py-2 bg-accent/10 rounded-full border border-accent/20">
-              <span className="text-sm font-medium text-accent">🚀 High-Converting Landing Pages</span>
+              <span className="text-sm font-medium text-accent">{t('cta_offer')}</span>
             </div>
             
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-              Stunning Landing Pages That{" "}
+              {t('hero_title_prefix')} {" "}
               <span className="bg-gradient-to-r from-primary via-[hsl(260_80%_45%)] to-accent bg-clip-text text-transparent">
-                Convert
+                {t('hero_title_emphasis')}
               </span>
             </h1>
             
-            <p className="text-xl text-muted-foreground max-w-2xl">
-              Professional, high-performance landing pages fast delivered. 
-              Perfect for startups, marketers, and businesses that need results fast.
-            </p>
+            <p className="text-xl text-muted-foreground max-w-2xl">{t('hero_sub') || 'Professional, high-performance landing pages fast delivered. Perfect for startups, marketers, and businesses that need results fast.'}</p>
             
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
@@ -39,7 +38,7 @@ const Hero = () => {
                 onClick={scrollToPricing}
                 className="group"
               >
-                View Packages
+                {t('navbar_get_started')}
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button 
@@ -47,24 +46,24 @@ const Hero = () => {
                 size="xl"
                 onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                See Examples
+                {t('view_portfolio')}
               </Button>
             </div>
             
             <div className="flex items-center gap-8 pt-4">
               <div>
                 <div className="text-3xl font-bold text-foreground">500+</div>
-                <div className="text-sm text-muted-foreground">Projects Delivered</div>
+                <div className="text-sm text-muted-foreground">{t('projects_delivered')}</div>
               </div>
               <div className="h-12 w-px bg-border" />
               <div>
                 <div className="text-3xl font-bold text-foreground">98%</div>
-                <div className="text-sm text-muted-foreground">Client Satisfaction</div>
+                <div className="text-sm text-muted-foreground">{t('client_satisfaction')}</div>
               </div>
               <div className="h-12 w-px bg-border" />
               <div>
                 <div className="text-3xl font-bold text-foreground">1-7</div>
-                <div className="text-sm text-muted-foreground">Days Delivery</div>
+                <div className="text-sm text-muted-foreground">{t('days_delivery')}</div>
               </div>
             </div>
           </div>
@@ -80,7 +79,7 @@ const Hero = () => {
             </div>
             {/* Floating badge */}
             <div className="absolute -top-4 -right-4 bg-accent text-accent-foreground px-6 py-3 rounded-full shadow-2xl font-semibold animate-bounce">
-              Fast Delivery! ⚡
+              {t('fast_delivery')}
             </div>
           </div>
         </div>

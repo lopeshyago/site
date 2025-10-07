@@ -1,13 +1,16 @@
 import { Button } from "@/components/ui/button"
+import { useTranslation } from "@/i18n/i18n";
 
 interface WhatsAppButtonProps {
   phoneNumber: string
   message?: string
 }
 
-export function WhatsAppButton({ phoneNumber, message = "Hi! I would like to get more information." }: WhatsAppButtonProps) {
+export function WhatsAppButton({ phoneNumber, message }: WhatsAppButtonProps) {
+  const { t } = useTranslation();
+  const defaultMessage = t('whatsapp_message');
   const handleClick = () => {
-    const encodedMessage = encodeURIComponent(message)
+  const encodedMessage = encodeURIComponent(message ?? defaultMessage)
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`
     window.open(whatsappUrl, "_blank")
   }

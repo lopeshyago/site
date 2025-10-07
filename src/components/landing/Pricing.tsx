@@ -1,59 +1,63 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check } from "lucide-react";
+import { useTranslation } from "@/i18n/i18n";
 
 const Pricing = () => {
+  const { t } = useTranslation();
   const openWhatsApp = (packageName: string, price: number) => {
     const phoneNumber = "5521991779372";
-    const message = encodeURIComponent(`Hi! I'm interested in the ${packageName} package for $${price}. Could you provide more information?`);
+    const template = t('whatsapp_message_pkg');
+    const filled = template.replace('{name}', packageName).replace('{price}', String(price));
+    const message = encodeURIComponent(filled);
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
   };
   const packages = [
     {
       id: "basic",
-      name: "Basic",
-      description: "Perfect for simple landing pages",
+      name: t('navbar_get_started') === 'Get Started' ? 'Basic' : 'Basic',
+      description: t('pricing_basic_desc'),
       price: 75,
       features: [
-        "Single Page",
-        "Responsive Design",
-        "Up to 4 Sections",
-        "Basic SEO Optimization",
-        "Fast Loading Speed",
-        "7 Days Delivery",
+        t('feature_single_page'),
+        t('feature_responsive'),
+        t('feature_sections_4'),
+        t('feature_basic_seo'),
+        t('feature_fast_loading'),
+        t('delivery_7_days'),
       ]
     },
     {
       id: "professional",
-      name: "Professional",
-      description: "For businesses that need more features",
+      name: 'Professional',
+      description: t('pricing_professional_desc'),
       price: 100,
       features: [
-        "Everything in Basic",
-        "Up to 5 Sections",
-        "Advanced SEO Optimization",
-        "Custom Forms",
-        "Analytics Integration",
-        "1 Day Delivery",
-        "Social Media Integration",
+        t('feature_everything_basic'),
+        t('feature_sections_5'),
+        t('feature_adv_seo'),
+        t('feature_custom_forms'),
+        t('feature_analytics'),
+        t('delivery_1_day'),
+        t('feature_social'),
 
       ]
     },
     {
       id: "enterprise",
-      name: "Enterprise",
-      description: "Full customization for larger projects",
+      name: 'Enterprise',
+      description: t('pricing_enterprise_desc'),
       price: 400,
       features: [
-        "Everything in Professional",
-        "Unlimited Sections",
-        "Premium SEO Package",
-        "Custom Integrations",
-        "Priority Support",
-        "1 Day Delivery",
-        "A/B Testing",
-        "Performance Optimization",
-        "Custom Backend Integration"
+        t('feature_everything_basic'),
+        t('feature_unlimited'),
+        t('feature_premium_seo'),
+        t('feature_custom_integrations'),
+        t('feature_priority_support'),
+        t('delivery_1_day'),
+        t('feature_ab_testing'),
+        t('feature_performance'),
+        t('feature_backend')
       ]
     }
   ];
@@ -64,10 +68,8 @@ const Pricing = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16 space-y-4">
-          <h2 className="text-4xl md:text-5xl font-bold">Simple, Transparent Pricing</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Choose the perfect package for your needs. All plans include mobile-responsive design and SEO optimization.
-          </p>
+          <h2 className="text-4xl md:text-5xl font-bold">{t('pricing_title')}</h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">{t('pricing_sub')}</p>
         </div>
         
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -93,7 +95,7 @@ const Pricing = () => {
                   <CardDescription className="text-base">{pkg.description}</CardDescription>
                   <div className="mt-6">
                     <span className="text-5xl font-bold">${pkg.price}</span>
-                    <span className="text-muted-foreground"> / project</span>
+                    <span className="text-muted-foreground"> {t('per_project')}</span>
                   </div>
                 </CardHeader>
                 
@@ -113,7 +115,7 @@ const Pricing = () => {
                     className="w-full"
                     onClick={() => openWhatsApp(pkg.name, pkg.price)}
                   >
-                    Choose {pkg.name}
+                    {t('choose')} {pkg.name}
                   </Button>
                 </CardContent>
               </Card>
@@ -123,9 +125,9 @@ const Pricing = () => {
         
         <div className="text-center mt-12 space-y-8">
           <p className="text-muted-foreground">
-            Need a custom solution?{" "}
+            {t('contact_us')} {" "}
             <a href="#contact" className="text-accent font-medium hover:underline">
-              Contact us for enterprise pricing
+              {t('contact_us')}
             </a>
           </p>
 
@@ -139,7 +141,7 @@ const Pricing = () => {
               }}
               className="bg-[#25D366] hover:bg-[#20BD5B] text-white flex items-center gap-2 px-8 py-6 text-lg transform hover:scale-105 transition-all duration-300"
             >
-              Talk to Our Team Now
+              {t('navbar_talk')}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"

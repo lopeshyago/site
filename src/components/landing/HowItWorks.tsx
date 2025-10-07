@@ -1,42 +1,44 @@
 import { CheckCircle2, Palette, Rocket, Send } from "lucide-react";
-
-const steps = [
-  {
-    icon: CheckCircle2,
-    step: "1",
-    title: "Choose Your Plan",
-    description: "Select the perfect package that fits your needs and budget from our transparent pricing options."
-  },
-  {
-    icon: Send,
-    step: "2",
-    title: "Submit Your Details",
-    description: "Fill out our simple form with your brand colors, logo, and content. We'll guide you every step of the way."
-  },
-  {
-    icon: Palette,
-    step: "3",
-    title: "We Design & Build",
-    description: "Our expert team creates your custom landing page with attention to every detail, optimized for conversions."
-  },
-  {
-    icon: Rocket,
-    step: "4",
-    title: "Launch & Convert",
-    description: "Receive your completed page, review it, and go live. Start converting visitors into customers immediately."
-  }
-];
+import { useTranslation } from "@/i18n/i18n";
 
 const HowItWorks = () => {
+  const { t } = useTranslation();
+  const steps = [
+    {
+      icon: CheckCircle2,
+      step: "1",
+      title: t('how_step1_title') || 'Choose Your Plan',
+      description: t('how_step1_desc') || t('how_sub')
+    },
+    {
+      icon: Send,
+      step: "2",
+      title: t('how_step2_title') || 'Submit Your Details',
+      description: t('how_step2_desc') || "Fill out our simple form with your brand colors, logo, and content. We'll guide you every step of the way."
+    },
+    {
+      icon: Palette,
+      step: "3",
+      title: t('how_step3_title') || 'We Design & Build',
+      description: t('how_step3_desc') || 'Our expert team creates your custom landing page with attention to every detail, optimized for conversions.'
+    },
+    {
+      icon: Rocket,
+      step: "4",
+      title: t('how_step4_title') || 'Launch & Convert',
+      description: t('how_step4_desc') || 'Receive your completed page, review it, and go live. Start converting visitors into customers immediately.'
+    }
+  ];
+
   return (
     <section className="py-24 bg-background relative overflow-hidden">
       <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border))_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-30" />
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16 space-y-4">
-          <h2 className="text-4xl md:text-5xl font-bold">How It Works</h2>
+          <h2 className="text-4xl md:text-5xl font-bold">{t('how_it_works_title') || t('how_title')}</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            From concept to launch in just 4 simple steps
+            {t('how_intro')}
           </p>
         </div>
         

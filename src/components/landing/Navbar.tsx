@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "@/i18n/i18n";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,6 +13,7 @@ const Navbar = () => {
     element?.scrollIntoView({ behavior: 'smooth' });
     setIsMenuOpen(false);
   };
+  const { t } = useTranslation();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-slate-900 via-slate-900/95 to-slate-800/90 backdrop-blur-md border-b border-slate-700/50 shadow-lg">
@@ -21,7 +23,7 @@ const Navbar = () => {
             className="cursor-pointer"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
-            <img src="/logo.png" alt="Landing Page Pro" className="h-8 hover:scale-105 transition-transform duration-200" />
+            <img src="/logo.png" alt={t('brand_name')} title={t('brand_name')} className="h-8 hover:scale-105 transition-transform duration-200" />
           </div>
           
           {/* Desktop Navigation */}
@@ -30,30 +32,31 @@ const Navbar = () => {
               onClick={() => scrollToSection('portfolio')}
               className="text-gray-100 hover:text-blue-400 transition-colors font-medium"
             >
-              Portfolio
+              {t('navbar_portfolio')}
             </button>
             <button 
               onClick={() => scrollToSection('pricing')}
               className="text-gray-100 hover:text-blue-400 transition-colors font-medium"
             >
-              Pricing
+              {t('navbar_pricing')}
             </button>
 
             <Button 
               variant="hero"
               onClick={() => scrollToSection('pricing')}
             >
-              Get Started
+              {t('navbar_get_started')}
             </Button>
             <Button 
               variant="hero"
               onClick={() => {
-                const message = encodeURIComponent("Hi! I'd like to talk to your team about a project.");
+                const message = encodeURIComponent(t('whatsapp_message'));
                 window.open(`https://wa.me/5521991779372?text=${message}`, "_blank");
               }}
               className="bg-[#25D366] hover:bg-[#20BD5B] text-white flex items-center gap-2"
+              aria-label={t('navbar_talk')}
             >
-              Talk to Our Team Now
+              {t('navbar_talk')}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"
@@ -83,23 +86,23 @@ const Navbar = () => {
               onClick={() => scrollToSection('portfolio')}
               className="block w-full text-left py-2 text-gray-100 hover:text-blue-400 transition-colors font-medium"
             >
-              Portfolio
+              {t('navbar_portfolio')}
             </button>
             <button 
               onClick={() => scrollToSection('pricing')}
               className="block w-full text-left py-2 text-gray-100 hover:text-blue-400 transition-colors font-medium"
             >
-              Pricing
+              {t('navbar_pricing')}
             </button>
             <Button 
               variant="outline"
               className="w-full"
               onClick={() => {
-                navigate('/auth');
+                scrollToSection('pricing');
                 setIsMenuOpen(false);
               }}
             >
-              Sign In
+              {t('navbar_get_started')}
             </Button>
             <Button 
               variant="hero"
@@ -111,12 +114,12 @@ const Navbar = () => {
             <Button 
               variant="hero"
               onClick={() => {
-                const message = encodeURIComponent("Hi! I'd like to talk to your team about a project.");
+                const message = encodeURIComponent(t('whatsapp_message'));
                 window.open(`https://wa.me/5521991779372?text=${message}`, "_blank");
               }}
               className="w-full bg-green-500 hover:bg-green-600 text-white flex items-center justify-center gap-2"
             >
-              Talk to Our Team Now
+              {t('navbar_talk')}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"

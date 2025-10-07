@@ -1,10 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { useTranslation } from "@/i18n/i18n";
 
 const CTA = () => {
   const scrollToPricing = () => {
     document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
   };
+  const { t } = useTranslation();
 
   return (
     <section className="py-24 bg-gradient-to-br from-primary via-[hsl(260_80%_45%)] to-accent relative overflow-hidden">
@@ -16,17 +18,14 @@ const CTA = () => {
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
             <Sparkles className="h-4 w-4 text-white" />
-            <span className="text-sm font-medium text-white">Limited Time Offer</span>
+            <span className="text-sm font-medium text-white">{t('cta_offer')}</span>
           </div>
           
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
-            Ready to Transform Your Business?
+            {t('cta_title')}
           </h2>
           
-          <p className="text-xl text-white/90 max-w-2xl mx-auto">
-            Join hundreds of successful businesses that have launched with our professional landing pages. 
-            Start converting visitors into customers today.
-          </p>
+          <p className="text-xl text-white/90 max-w-2xl mx-auto">{t('cta_sub')}</p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
             <Button 
@@ -35,7 +34,7 @@ const CTA = () => {
               onClick={scrollToPricing}
               className="group bg-white text-primary hover:bg-white/90 shadow-2xl"
             >
-              Get Started Now
+              {t('navbar_get_started')}
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button 
@@ -44,22 +43,22 @@ const CTA = () => {
               className="border-2 border-white bg-transparent text-white hover:bg-white/10"
               onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              View Portfolio
+              {t('view_portfolio')}
             </Button>
           </div>
           
           <div className="flex items-center justify-center gap-8 pt-8 text-white/80">
             <div className="flex items-center gap-2">
               <Check className="h-5 w-5" />
-              <span className="text-sm">No Hidden Fees</span>
+              <span className="text-sm">{t('no_hidden_fees')}</span>
             </div>
             <div className="flex items-center gap-2">
               <Check className="h-5 w-5" />
-              <span className="text-sm">Fast Delivery</span>
+              <span className="text-sm">{t('no_hidden_fees') === 'No Hidden Fees' ? t('fast_delivery') : t('fast_delivery')}</span>
             </div>
             <div className="flex items-center gap-2">
               <Check className="h-5 w-5" />
-              <span className="text-sm">100% Satisfaction</span>
+              <span className="text-sm">{t('satisfaction_100')}</span>
             </div>
           </div>
         </div>
