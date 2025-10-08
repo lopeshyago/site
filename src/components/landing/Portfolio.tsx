@@ -48,7 +48,7 @@ const portfolioItems = [
     title: "Fitness Program",
     category: "Health",
     description: "Energy-packed fitness program page",
-    url: "https://example-fitness.cohttps://glittering-wisp-ed4874.netlify.app/"
+    url: "https://glittering-wisp-ed4874.netlify.app/"
   }
 ];
 
