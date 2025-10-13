@@ -52,9 +52,9 @@ const portfolioItems = [
   },
   {
     image: portfolio5,
-    title: "Fitness Program",
-    category: "Health",
-    description: "Energy-packed fitness program page",
+    title: "Dashboard UI",
+    category: "Dashboard",
+    description: "Dashaboard interface for data visualization",
     url: "https://glittering-wisp-ed4874.netlify.app/"
   }
 ];
@@ -63,7 +63,7 @@ const portfolioItems = [
 const portfolioItemsPtBR = [
   {
     image: dentistaImg,
-    title: 'Dentista',
+    title: 'Clínica Odontológica',
     category: 'Saúde',
     description: 'Site para clínica odontológica',
     url: 'https://dentista-khaki.vercel.app/'
