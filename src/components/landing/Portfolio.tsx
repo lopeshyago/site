@@ -4,6 +4,13 @@ import portfolio3 from "@/assets/portfolio-3.png";
 import portfolio4 from "@/assets/portfolio-4.png";
 import portfolio5 from "@/assets/portfolio-5.png";
 import portfolio6 from "@/assets/portfolio-6.png";
+// PT-BR niche images (placed by user)
+import dentistaImg from "@/assets/dentista.png";
+import advocaciaImg from "@/assets/advocacia.png";
+import digitalImg from "@/assets/digital.png";
+import esteticaImg from "@/assets/estetica.png";
+import hamburgueriaImg from "@/assets/hamburgueria.png";
+import barbeariaImg from "@/assets/barbearia.png";
 import { ExternalLink } from "lucide-react";
 import { useTranslation } from "@/i18n/i18n";
 
@@ -52,8 +59,56 @@ const portfolioItems = [
   }
 ];
 
+// PT-BR specific portfolio (URLs provided by user)
+const portfolioItemsPtBR = [
+  {
+    image: dentistaImg,
+    title: 'Dentista',
+    category: 'Saúde',
+    description: 'Site para clínica odontológica',
+    url: 'https://dentista-khaki.vercel.app/'
+  },
+  {
+    image: advocaciaImg,
+    title: 'Escritório de Advocacia',
+    category: 'Serviços',
+    description: 'Site institucional para escritório de advocacia',
+    url: 'https://barbearia-orcin-rho.vercel.app/'
+  },
+  {
+    image: digitalImg,
+    title: 'Produto Digital',
+    category: 'Produto',
+    description: 'Landing page para produto digital',
+    url: 'https://produtodigital.vercel.app/'
+  },
+  {
+    image: esteticaImg,
+    title: 'Clínica de Estética',
+    category: 'Beleza',
+    description: 'Site para clínica de estética',
+    url: 'https://estetica-ashen.vercel.app/'
+  },
+  {
+    image: hamburgueriaImg,
+    title: 'Hamburgueria',
+    category: 'Alimentação',
+    description: 'Landing page para hamburgueria',
+    url: 'https://hamburgueria-delta-seven.vercel.app/'
+  },
+  {
+    image: barbeariaImg,
+    title: 'Barbearia',
+    category: 'Serviços',
+    description: 'Site para barbearia',
+    url: 'https://barbearia-orcin-rho.vercel.app/'
+  }
+];
+
 const Portfolio = () => {
-  const { t } = useTranslation();
+  const { t, lang } = useTranslation();
+  const isPt = lang && lang.startsWith('pt');
+  const itemsToShow = isPt ? portfolioItemsPtBR : portfolioItems;
   return (
     <section id="portfolio" className="py-24 bg-muted/50">
       <div className="container mx-auto px-4">
@@ -63,7 +118,7 @@ const Portfolio = () => {
         </div>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {portfolioItems.map((item, index) => (
+          {itemsToShow.map((item, index) => (
             <div 
               key={index}
               className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"

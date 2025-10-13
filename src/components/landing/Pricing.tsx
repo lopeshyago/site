@@ -4,63 +4,128 @@ import { Check } from "lucide-react";
 import { useTranslation } from "@/i18n/i18n";
 
 const Pricing = () => {
-  const { t } = useTranslation();
-  const openWhatsApp = (packageName: string, price: number) => {
+  const { t, lang } = useTranslation();
+  const isPt = lang && lang.startsWith('pt');
+
+  const formatPrice = (value: number) => {
+    if (isPt) {
+      return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
+    }
+    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(value);
+  };
+
+  const openWhatsApp = (packageName: string, priceDisplay: string) => {
     const phoneNumber = "5521991779372";
     const template = t('whatsapp_message_pkg');
-    const filled = template.replace('{name}', packageName).replace('{price}', String(price));
+    const filled = template.replace('{name}', packageName).replace('{price}', priceDisplay);
     const message = encodeURIComponent(filled);
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
   };
-  const packages = [
-    {
-      id: "basic",
-      name: t('navbar_get_started') === 'Get Started' ? 'Basic' : 'Basic',
-      description: t('pricing_basic_desc'),
-      price: 75,
-      features: [
-        t('feature_single_page'),
-        t('feature_responsive'),
-        t('feature_sections_4'),
-        t('feature_basic_seo'),
-        t('feature_fast_loading'),
-        t('delivery_7_days'),
-      ]
-    },
-    {
-      id: "professional",
-      name: 'Professional',
-      description: t('pricing_professional_desc'),
-      price: 100,
-      features: [
-        t('feature_everything_basic'),
-        t('feature_sections_5'),
-        t('feature_adv_seo'),
-        t('feature_custom_forms'),
-        t('feature_analytics'),
-        t('delivery_1_day'),
-        t('feature_social'),
 
+  // Pricing for EN (USD) and PT-BR (BRL)
+  const packages = isPt
+    ? [
+        {
+          id: 'basic',
+          name: 'Basic',
+          description: t('pricing_basic_desc'),
+          priceValue: 400,
+          priceDisplay: formatPrice(400),
+          features: [
+            t('feature_single_page'),
+            t('feature_responsive'),
+            t('feature_sections_4'),
+            t('feature_basic_seo'),
+            t('feature_fast_loading'),
+            t('delivery_7_days'),
+          ],
+        },
+        {
+          id: 'professional',
+          name: 'Professional',
+          description: t('pricing_professional_desc'),
+          priceValue: 500,
+          priceDisplay: formatPrice(500),
+          features: [
+            t('feature_everything_basic'),
+            t('feature_sections_5'),
+            t('feature_adv_seo'),
+            t('feature_custom_forms'),
+            t('feature_analytics'),
+            t('delivery_1_day'),
+            t('feature_social'),
+          ],
+        },
+        {
+          id: 'enterprise',
+          name: 'Enterprise',
+          description: t('pricing_enterprise_desc'),
+          priceValue: 2000,
+          priceDisplay: formatPrice(2000),
+          features: [
+            t('feature_everything_basic'),
+            t('feature_unlimited'),
+            t('feature_premium_seo'),
+            t('feature_custom_integrations'),
+            t('feature_priority_support'),
+            t('delivery_1_day'),
+            t('feature_ab_testing'),
+            t('feature_performance'),
+            t('feature_backend'),
+          ],
+        },
       ]
-    },
-    {
-      id: "enterprise",
-      name: 'Enterprise',
-      description: t('pricing_enterprise_desc'),
-      price: 400,
-      features: [
-        t('feature_everything_basic'),
-        t('feature_unlimited'),
-        t('feature_premium_seo'),
-        t('feature_custom_integrations'),
-        t('feature_priority_support'),
-        t('delivery_1_day'),
-        t('feature_ab_testing'),
-        t('feature_performance'),
-        t('feature_backend')
-      ]
-    }
-  ];
+    : [
+        {
+          id: 'basic',
+          name: 'Basic',
+          description: t('pricing_basic_desc'),
+          priceValue: 75,
+          priceDisplay: formatPrice(75),
+          features: [
+            t('feature_single_page'),
+            t('feature_responsive'),
+            t('feature_sections_4'),
+            t('feature_basic_seo'),
+            t('feature_fast_loading'),
+            t('delivery_7_days'),
+          ],
+        },
+        {
+          id: 'professional',
+          name: 'Professional',
+          description: t('pricing_professional_desc'),
+          priceValue: 100,
+          priceDisplay: formatPrice(100),
+          features: [
+            t('feature_everything_basic'),
+            t('feature_sections_5'),
+            t('feature_adv_seo'),
+            t('feature_custom_forms'),
+            t('feature_analytics'),
+            t('delivery_1_day'),
+            t('feature_social'),
+          ],
+        },
+        {
+          id: 'enterprise',
+          name: 'Enterprise',
+          description: t('pricing_enterprise_desc'),
+          priceValue: 400,
+          priceDisplay: formatPrice(400),
+          features: [
+            t('feature_everything_basic'),
+            t('feature_unlimited'),
+            t('feature_premium_seo'),
+            t('feature_custom_integrations'),
+            t('feature_priority_support'),
+            t('delivery_1_day'),
+            t('feature_ab_testing'),
+            t('feature_performance'),
+            t('feature_backend'),
+          ],
+        },
+      ];
 
   return (
     <section id="pricing" className="py-24 bg-background relative overflow-hidden">
@@ -94,7 +159,7 @@ const Pricing = () => {
                   <CardTitle className="text-3xl mb-2">{pkg.name}</CardTitle>
                   <CardDescription className="text-base">{pkg.description}</CardDescription>
                   <div className="mt-6">
-                    <span className="text-5xl font-bold">${pkg.price}</span>
+                    <span className="text-5xl font-bold">{pkg.priceDisplay}</span>
                     <span className="text-muted-foreground"> {t('per_project')}</span>
                   </div>
                 </CardHeader>
@@ -113,7 +178,7 @@ const Pricing = () => {
                     variant={isPopular ? "hero" : "default"}
                     size="lg"
                     className="w-full"
-                    onClick={() => openWhatsApp(pkg.name, pkg.price)}
+                    onClick={() => openWhatsApp(pkg.name, pkg.priceDisplay)}
                   >
                     {t('choose')} {pkg.name}
                   </Button>
