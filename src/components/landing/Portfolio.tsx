@@ -73,7 +73,7 @@ const portfolioItemsPtBR = [
     title: 'Escritório de Advocacia',
     category: 'Serviços',
     description: 'Site institucional para escritório de advocacia',
-    url: 'https://barbearia-orcin-rho.vercel.app/'
+    url: 'https://advocacia-gilt.vercel.app/'
   },
   {
     image: digitalImg,
